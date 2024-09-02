@@ -16,7 +16,10 @@
     "dotenv": "^16.4.5",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
-    "random": "^4.1.0"
+    "random": "^4.1.0",
+    "source-map-loader": "^5.0.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "eslint": "^9.9.1",

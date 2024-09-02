@@ -1,16 +1,14 @@
-require("dotenv").config();
+import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import fs from 'node:fs';
+import path from 'node:path';
 
-// Require the necessary discord.js classes
-const fs = require('node:fs');
-const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-
-// Create a new client instance
-const client = new Client({ intents: [
-    GatewayIntentBits.MessageContent,
-	GatewayIntentBits.Guilds,
-	GatewayIntentBits.GuildMessages,
-  ] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent
+	]
+});
 
 client.commands = new Collection();
 
@@ -19,25 +17,26 @@ const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
 	const commandsPath = path.join(foldersPath, folder);
-	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.ts'));
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		// Set a new item in the Collection with the key as the command name and the value as the exported module
-		if ('data' in command && 'execute' in command) {
-			client.commands.set(command.data.name, command);
-		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+		const command = await import(filePath);
+		if (!('data' in command) || !('execute' in command)) {
+			throw new Error(`The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
+		client.commands.set(command.data.name, command);
 	}
 }
 
 const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.ts'));
 
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
+	const event = await import(filePath);
+	if (!('name' in event) || !('execute' in event)) {
+		throw new Error(`The event at ${filePath} is missing a required "name" or "execute" property.`);
+	}
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
 	} else {

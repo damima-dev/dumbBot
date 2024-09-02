@@ -1,10 +1,17 @@
-const { SlashCommandBuilder } = require('discord.js');
+import { SlashCommandBuilder } from 'discord.js';
 
-module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!'),
-	async execute(interaction) {
-		await interaction.reply('Pong!');
-	},
+const pingCommand = {
+  data: new SlashCommandBuilder()
+	.setName('ping')
+	.setDescription('Replies with Pong!'),
+  execute: async function (interaction) {
+	try {
+	  await interaction.reply('Pong!');
+	} catch (error) {
+	  console.error('Error executing ping command:', error);
+	  await interaction.reply({ content: 'There was an error executing this command.', ephemeral: true });
+	}
+  }
 };
+
+module.exports = pingCommand;
