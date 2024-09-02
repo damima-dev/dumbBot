@@ -1,5 +1,6 @@
 # dumbBot
-[![dumbBot Discord Support Server](https://discordapp.com/api/guilds/1280119675199557632/embed.png)](https://discord.gg/WMSnhTMSxp) ![GitHub license](https://img.shields.io/github/license/damimaa/dumbBot)
+![dumbBot Discord Support Server](https://img.shields.io/discord/1280119675199557632) ![GitHub license](https://img.shields.io/github/license/damimaa/dumbBot)
+
 
 dumbBot is a Discord dumb funny bot that has fun commands.
 
