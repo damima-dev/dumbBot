@@ -27,6 +27,8 @@ Tadaaa! You have setup your dumbBot instance!
 > [!TIP]
 > We recommend to run your instance with the following command, using [nodemon](https://nodemon.io/).
 
-`pnpm run dev`: Run the instance with `nodemon`
+`pnpm run dev`: Run the instance with `nodemon`.
+
 `pnpm run register`: Register slash commands.
+
 `pnpm run start`: Run the instance normally.
