@@ -4,9 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "register": "node deploy-cmds.js",
-    "start": "node ."
+    "dev": "nodemon src/index.js",
+    "register": "node src/deploy-cmds.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
