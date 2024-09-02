@@ -7,23 +7,9 @@ const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 
 // Create a new client instance
 const client = new Client({ intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildBans,
-    GatewayIntentBits.GuildEmojisAndStickers,
-    GatewayIntentBits.GuildIntegrations,
-    GatewayIntentBits.GuildInvites,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessageReactions,
-    GatewayIntentBits.GuildMessageTyping,
-    GatewayIntentBits.GuildPresences,
-    GatewayIntentBits.GuildScheduledEvents,
-    GatewayIntentBits.GuildVoiceStates,
-    GatewayIntentBits.GuildWebhooks,
-    GatewayIntentBits.DirectMessages,
-    GatewayIntentBits.DirectMessageReactions,
-    GatewayIntentBits.DirectMessageTyping,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildScheduledEvents,
+	GatewayIntentBits.Guilds,
+	GatewayIntentBits.GuildMessages,
   ] });
 
 client.commands = new Collection();
