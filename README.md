@@ -2,6 +2,9 @@
 dumbBot is a Discord dumb funny bot that has fun commands.
 
 # Self Hosting
+> [!CAUTION]
+> Do not share your bot token to anyone.
+
 You can self host dumbBot for what you want, but you must abide to the [LICENSE](/LICENSE).
 
 ## Setup
