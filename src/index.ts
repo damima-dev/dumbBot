@@ -2,6 +2,7 @@ import { Client, Collection, GatewayIntentBits, Options } from 'discord.js';
 import fs from 'node:fs';
 import path from 'node:path';
 
+// client
 const client = new Client({
 	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
 	makeCache: Options.cacheWithLimits({
