@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon",
     "register": "node src/deploy-cmds.ts",
-    "start": "ts-node src/index.ts"
+    "start": "tsc src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,13 +20,12 @@
     "path": "^0.12.7",
     "random": "^4.1.0",
     "source-map-loader": "^5.0.0",
-    "ts-loader": "^9.5.1",
-    "tsc": "^2.0.4",
-    "typescript": "^5.5.4"
+    "ts-loader": "^9.5.1"
   },
   "devDependencies": {
     "eslint": "^9.9.1",
     "nodemon": "^3.1.4",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
