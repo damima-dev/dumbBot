@@ -1,14 +1,22 @@
-import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, Options } from 'discord.js';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent
-	]
+	intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
+	makeCache: Options.cacheWithLimits({
+		MessageManager: 10,
+		StageInstanceManager: 10,
+		VoiceStateManager: 10,
+	}),
+	allowedMentions: {
+		parse: [],
+	},
 });
+
+declare module 'discord.js' {
+	interface Client {commands: Collection<string, any>;}
+  }
 
 client.commands = new Collection();
 
