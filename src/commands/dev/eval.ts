@@ -1,7 +1,7 @@
 require("dotenv").config();
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 
-module.exports = {
+const command = {
   data: new SlashCommandBuilder()
     .setName('eval')
     .setDescription('Evaluate JavaScript code')
@@ -10,14 +10,15 @@ module.exports = {
         .setDescription('The JavaScript code to evaluate')
         .setRequired(true)
     ),
-  async execute(interaction) {
+  async execute(interaction: ChatInputCommandInteraction): Promise<void> {
     const authorizedUserID = process.env.ownerId; // Replace with your authorized user's ID
 
     if (interaction.user.id !== authorizedUserID) {
-      return interaction.reply('You are not authorized to use this command.');
+      await interaction.reply('You are not authorized to use this command.');
+      return; // This line is now correct
     }
 
-    const code = interaction.options.getString('code');
+    const code = interaction.options.get('code')?.value as string;
     try {
       let evaled = eval(code);
 
@@ -26,10 +27,12 @@ module.exports = {
       }
 
       // Send a success message
-      interaction.reply(`Evaluation successful:\n\`\`\`js\n${evaled}\n\`\`\``);
+      await interaction.reply(`Evaluation successful:\n\`\`\`js\n${evaled}\n\`\`\``);
     } catch (err) {
       // Send an error message
-      interaction.reply(`Evaluation failed: \n\`\`\`js\n${err}\n\`\`\``);
+      await interaction.reply(`Evaluation failed: \n\`\`\`js\n${err}\n\`\`\``);
     }
   },
 };
+
+module.exports = command;

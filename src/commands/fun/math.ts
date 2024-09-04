@@ -1,6 +1,20 @@
 import { SlashCommandBuilder, SlashCommandStringOption } from 'discord.js';
 import { CommandInteraction } from 'discord.js';
 
+function solveMathProblem(problem: string): number {
+  try {
+    return eval(problem);
+  } catch (error) {
+    throw new Error('Invalid math problem');
+  }
+}
+
+function getPlausibleIncorrectAnswer(problem: string): number {
+  const answer = solveMathProblem(problem);
+  const range = 10;
+  return answer + (Math.random() * range - range / 2);
+}
+
 const mathCommand = {
   data: new SlashCommandBuilder()
     .setName('math')
@@ -12,7 +26,7 @@ const mathCommand = {
         .setRequired(true)
     ),
   async execute(interaction: CommandInteraction): Promise<void> {
-    const problem = interaction.options.getString('problem');
+    const problem = interaction.options.get('problem')?.value as string;
     try {
       const answer = solveMathProblem(problem);
       const correctResponse = Math.random() < 0.2; // 20% chance of correct response
@@ -29,4 +43,4 @@ const mathCommand = {
   }
 };
 
-// ...
+export default mathCommand;
