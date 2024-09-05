@@ -9,3 +9,6 @@ dumbBot is a Discord dumb funny bot that has fun commands.
 
 # Self Hosting
 The self hosting guide can be found in the [wiki](https://github.com/damimaa/dumbBot/wiki/Self-Hosting).
+
+# Contributing
+Contributing information can be found at [CONTRIBUTING.md](/CONTRIBUTING.md) and the code of conduct can be found at [CODE_OF_CONDUCT.md](/CODE_OF_CONDUCT.md)
